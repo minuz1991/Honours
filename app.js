@@ -29,26 +29,12 @@ var personalData = new Schema({
   weight: String,
   height: String,
   age: String,
+  bmi: String,
+  activity: String,
   date: Date
 });
 
-//
-// Store song documents in a collection called "songs"
 var details = mongoose.model('details', personalData);
-
-//var userData = new details({
-//  gender: "fff",
-//  weight: '94',
-//  height: '194',
-//  age: 24
-//});
-
-//userData.save(function(error) {
-//  console.log("Your bee has been saved!");
-//  if (error) {
-//    console.error(error);
-//  }
-//});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
