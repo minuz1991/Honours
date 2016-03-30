@@ -166,11 +166,11 @@ progress::-moz-progress-bar {  background-color: red;}
 /*TDEE Page*/
 #tdee{width: 100%; height: 100%;}
 #tdeeCalculator{width:40%;height: 100%; overflow: auto; margin: auto;top: 0; left: 0;right: 0;}
-#tdeeExplanation1,#tdeeExplanation2{background:darkgrey;width: 165px; height:110px; overflow: auto; margin: auto;top: 0; left: 0;right: 0;}
-#tdeeExplanation3{background:darkgrey;width: 351px; height:85px; overflow: auto; margin: auto;top: 0; left: 0;right: 0;}
-#tdeeDesc1,#tdeeDesc2{background:rgba(51,55,84,0.8); padding: 1% 2%; -webkit-border-radius: 20px;border-radius: 20px;width: 18%; height: 465px;overflow: auto; margin: auto;top: 0; left: 0;right: 0;}
+/*#tdeeExplanation1,#tdeeExplanation2{background:darkgrey;width: 165px; height:110px; overflow: auto; margin: auto;top: 0; left: 0;right: 0;}*/
+/*#tdeeExplanation3{background:darkgrey;width: 351px; height:85px; overflow: auto; margin: auto;top: 0; left: 0;right: 0;}*/
+#tdeeDesc1,#tdeeDesc2{background:rgba(51,55,84,0.8); font-size:11pt; padding: 1% 2%; -webkit-border-radius: 20px;border-radius: 20px;width: 18%; height: 465px;overflow: auto; margin: auto;top: 0; left: 0;right: 0;}
 #btn9, #btn0{z-index: 99999;}
-#screen{width: 330px; height:100px; text-align: center; color:black;border-radius: 15px; overflow: auto; margin: auto;top: 0; left: 0;right: 0;}
+#screen{width: 20%; height:100px; text-align: center;font-size:10pt; color:black;border-radius: 15px; overflow: auto; margin: auto;top: 0; left: 0;right: 0;}
 .tdeeButton{width:65px; height: 25px; cursor: pointer; padding:20px 0; border-radius: 15px; overflow: auto; text-align: center;margin: auto;top: 0; left: 0;right: 0;}
 #clearButton{width:112px; height:50px;background:darkgrey; }
 
