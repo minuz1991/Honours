@@ -236,10 +236,9 @@ $(function() {
 		protein = Math.round(macroTemp * 0.25);
 		carbs = Math.round(macroTemp * 0.45);
 		fat = Math.round(macroTemp * 0.3);
-		console.log('protein percent ' + protein + ' carbs' + carbs + ' fat ' + fat);
-		$('#protDistribution').text('According to your personal details, you should consume: ' + Math.round(protein/4) + ' grams of protein a day, which is equivalent to ' + protein + ' cals to maintain your current weight. Considering your activity levels are low and you work a desk job.');
-		$('#carbDistribution').text('According to your personal details, you should consume: ' + Math.round(carbs/4) + ' grams of carbohydrates a day, which is equivalent to ' + carbs + ' cals to maintain your current weight. Considering your activity levels are low and you work a desk job.');
-		$('#fatDistribution').text('According to your personal details, you should consume: ' + Math.round(fat/9) + ' grams of fat a day, which is equivalent to ' + fat + ' cals to maintain your current weight. Considering your activity levels are low and you work a desk job.');
+		$('#protDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(protein/4) + 'g of protein a day, which is equivalent to ' + protein + 'cals to maintain your current weight.</strong>');
+		$('#carbDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(carbs/4) + ' g of carbohydrates a day, which is equivalent to ' + carbs + 'cals to maintain your current weight.</strong>');
+		$('#fatDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(fat/9) + ' g of fat a day, which is equivalent to ' + fat + 'cals to maintain your current weight.</strong>');
 	}
 
 	function flexiMacros(tdee){
@@ -303,9 +302,10 @@ $(function() {
 			weight = parseFloat($('#modalWeight').val());
 			height = parseFloat($('#modalHeight').val());
 			age = parseFloat($('#modalAge').val());
-			if(weight != null && height != null && age != null){
+
+			if(weight != 0 && weight != false && height != 0 && height != false && age != 0 && age != false){
 				calcBMR(weight, height, age);
-				$('#screen').text('Please select activity level')
+				//$('#screen').text('Please select activity level')
 			}else{
 				$('#screen').text('You entered wrong values');
 			}
