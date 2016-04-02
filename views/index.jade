@@ -99,7 +99,7 @@ block content
                     br
                     | Further negative side effects can include different type of cancers, due to the chemicals used for colouring as well as the tremendous  amount of sugar used in fizzy drinks, and an increased risk of developing heart problems due to caffeine.
             #juice(data-15000='top:100%;background:rgba(2,76,89,1);', data-15500='top:0%;')
-                img#juiceBg(src='img/juiceBg.svg', alt='', data-15000='display:none;', data-15100='display:block;', data-15500='opacity:1;left:0%;transform:scale(1);right:0%; bottom:0%; top:0%;', data-18500='transform:scale(3);')
+                img.juiceBg(src='img/juiceBg.svg', alt='', data-15000='display:none;', data-15100='display:block;', data-15500='opacity:1;left:0%;transform:scale(1);right:0%; bottom:0%; top:0%;', data-18500='transform:scale(3);')
                 img#bJuice(src='img/juice.svg', alt='', data-15500='opacity:0;', data-15900='opacity:1;transform:rotate(0deg); top:0%; left:0%; right:0%; bottom:0%; opacity:1;', data-16500='top:0%;', data-17500='top:-200%;', title='100ml of orange juice contains : calories - 47 kcal, Protein - 0.73g, Carbs - 10.9g, Fat - 0.21g.')
                 img#orange(src='img/orange.svg', alt='', data-15500='opacity:0;left:-100%;', data-16000='opacity:1;transform:rotate(0deg); top:35%; left:10%; opacity:1;', data-16500='transform:rotate(360deg);top:35%;', data-17500='top:-200%;')
                 img#kiwi(src='img/kiwi.svg', alt='', data-15500='opacity:0;right:-100%;', data-16000='opacity:1;transform:rotate(0deg); right:10%; top:35%; opacity:1;', data-16500='top:35%;transform:rotate(-360deg);', data-17500='top:-200%;')
@@ -133,9 +133,9 @@ block content
                     h3 MORE THAN HALF OF BRITISH ADULS ARE OBESE!
                     br
                     h3 NUMBERS ARE RISING!
-                img#stat5(src='img/17.svg', data-27000='top:45%;opacity:0;transform:rotate(0deg);', data-27500='right:25%;opacity:1;transform:rotate(360deg);', title='Moreover, 34.9% of boys in the age group of 10-11 are overweight or obese.')
-                img#stat6(src='img/21.svg', data-27000='top:45%;opacity:0;transform:rotate(0deg);', data-27500='left:25%;opacity:1; transform:rotate(-360deg);', title='Moreover, 31.5% of girls in the age group of 10-11 are overweight or obese.')
-                #statDesc2(data-27500='opacity:0;', data-28000='top:79%;opacity:1;')
+                img#stat5(src='img/17.svg', alt='' data-27000='top:45%;opacity:0;transform:rotate(0deg);', data-27500='right:25%;opacity:1;transform:rotate(360deg);', title='Moreover, 34.9% of boys in the age group of 10-11 are overweight or obese.')
+                img#stat6(src='img/21.svg', alt='' data-27000='top:45%;opacity:0;transform:rotate(0deg);', data-27500='left:25%;opacity:1; transform:rotate(-360deg);', title='Moreover, 31.5% of girls in the age group of 10-11 are overweight or obese.')
+                .statDesc2(data-27500='opacity:0;', data-28000='top:79%;opacity:1;')
                     h3 OBESITY BY GENDER IN BRITAIN (2016)
                 #barChartStats(data-28500='opacity:0;top:110%;', data-29000='opacity:1;')
                     img#barChar(src='img/barChart.svg', alt='', data-32300='bottom:50%;')
@@ -146,7 +146,7 @@ block content
                     img.barChart(src='img/c5.svg', alt='', data-30000='top:-100%;', data-30580='top:5%;left:13%;')
                     img.barChart(src='img/c6.svg', alt='', data-30000='top:-100%;', data-30600='top:5%;left:26%;')
                     img.barChart(src='img/c7.svg', alt='', data-30000='top:-100%;', data-30620='top:5%;left:40%;')
-                #statDesc2(data-32500='opacity:0;', data-30500='top:100%; opacity:1;')
+                .statDesc2(data-32500='opacity:0;', data-30500='top:100%; opacity:1;')
                     h1 Obesity statistics in Europe 2014
             #ukMap(data-33000='display:none;', data-33490='display:block;')
                 h1(data-33500='opacity:0;', data-34000='opacity:1;') Hover over the dots to see regional statistics
@@ -171,7 +171,7 @@ block content
             img#side8(src='img/lungs.svg', alt='', data-41500='opacity:0;', data-42000='opacity:1; top:13%;right:27%;transform:scale(0.7)', sidetitle='Breathing difficulties', sidetext='Obesity causes breathing related problems which might cause sleep amnea, headaches, tiredness.')
             img#side9(src='img/death.svg', alt='', data-42000='opacity:0;', data-42500='opacity:1; top:35%;', sidetitle='Death', sidetext='Other side effects from obesity can lead to shortened life span!')
         #tdee(data-43000='left:100%;', data-43500='left:0%;background:rgba(255,176,59,1);', data-45500='top:0%;', data-46000='top:0%;')
-            img#juiceBg(src='img/tdeeBg.svg', alt='', data-43500='opacity:1;left:0%;transform:scale(1);right:0%; bottom:0%; top:0%;')
+            img.juiceBg(src='img/tdeeBg.svg', alt='', data-43500='opacity:1;left:0%;transform:scale(1);right:0%; bottom:0%; top:0%;')
             img#tdeeCalculator(src='img/calculator.svg', alt='', data-43500='opacity:0;', data-44000='opacity:1;')
             #screen(data-43500='opacity:0;', data-44000='opacity:1;top:27%;')
                 | Learn more about yourself.  Read the instructions at left to find out how to do so!
@@ -230,7 +230,7 @@ block content
                     h1 The choice is yours!
                     br
                     |                     Food choices make no difference in terms of weight gain. As long as you keep track of your caloric needs for the day, you will be able to control your weight. However, if you only eat processed meals and don't get micronutrients (vitamins) from foods, then you're not going to feel and look as good. Keep in mind, it is important to balance macronutrients (Protein, Carbohydrates, Fats). Most popular macronutrient distribution:
-            #flexDietTools(data-47800='top:100%;', data-48200='top:30%;')
+            .flexDietTools(data-47800='top:100%;', data-48200='top:30%;')
                 #flexiPro
                 br
                 #flexiCarb
@@ -240,7 +240,7 @@ block content
                 br
                 |  These macronutrient numbers are ballanced according to the following ratios: Protein(25%), Carbohydrates(45%), Fats(30%). People who are in caloric deficit would benefit
                 |                    with higher protein percentage (30%) as this would help to preserve more muscle mass.
-            #flexDietTools(data-48000='top:100%;', data-48500='top:60%;')
+            .flexDietTools(data-48000='top:100%;', data-48500='top:60%;')
                 | Some tools like MyFitnessPal or Fitday will help you track your calories and manage macronutrient proportions. MyFitnessPal is free of charge and has huge food database.
             .dietTools
                 a(href='https://www.myfitnesspal.com/', target='_blank')
