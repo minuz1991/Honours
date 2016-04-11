@@ -141,20 +141,40 @@ $(function() {
 	}
 
 	function calcBMI(){
-		if(weight != 0  && height != 0 && age != 0){
-			BMI = (weight / ((height / 100) * (height / 100))).toFixed(1);
-			if (BMI < 18.5){
-				$('#screen').text('Your BMI: ' + BMI + ', you are underweight');
-			}else if(BMI >= 18.5 && BMI <= 25){
-				$('#screen').text('Your BMI: ' + BMI + ', you are in a healthy range');
-			}else if(BMI > 25 && BMI <= 30){
-				$('#screen').text('Your BMI: ' + BMI + ', you are overweight');
-			}else if(BMI > 30){
-				$('#screen').text('Your BMI: ' + BMI + ', you are obese!');
+		if(metric){
+			if(weight != 0  && height != 0 && age != 0){
+				BMI = (weight / ((height / 100) * (height / 100))).toFixed(1);
+				if (BMI < 18.5){
+					$('#screen').text('Your BMI: ' + BMI + ', you are underweight');
+				}else if(BMI >= 18.5 && BMI <= 25){
+					$('#screen').text('Your BMI: ' + BMI + ', you are in a healthy range');
+				}else if(BMI > 25 && BMI <= 30){
+					$('#screen').text('Your BMI: ' + BMI + ', you are overweight');
+				}else if(BMI > 30){
+					$('#screen').text('Your BMI: ' + BMI + ', you are obese!');
+				}
+			}else{
+				$('#screen').text('Enter your details by clicking on gender button');
 			}
 		}else{
-			$('#screen').text('Enter your details by clicking on gender button');
+			if(weight != 0  && height != 0 && age != 0){
+			var kgWeight = weight / 2.2;
+			var kgHeight = height * 2.54;
+			BMI = (kgWeight / ((kgHeight / 100) * (kgHeight / 100))).toFixed(1);
+				if (BMI < 18.5){
+					$('#screen').text('Your BMI: ' + BMI + ', you are underweight');
+				}else if(BMI >= 18.5 && BMI <= 25){
+					$('#screen').text('Your BMI: ' + BMI + ', you are in a healthy range');
+				}else if(BMI > 25 && BMI <= 30){
+					$('#screen').text('Your BMI: ' + BMI + ', you are overweight');
+				}else if(BMI > 30){
+					$('#screen').text('Your BMI: ' + BMI + ', you are obese!');
+				}
+			}else{
+				$('#screen').text('Enter your details by clicking on gender button');
+			}
 		}
+
 	}
 
 	function bmiForSave(){
@@ -237,8 +257,8 @@ $(function() {
 		carbs = Math.round(macroTemp * 0.45);
 		fat = Math.round(macroTemp * 0.3);
 		$('#protDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(protein/4) + 'g of protein a day, which is equivalent to ' + protein + 'cals to maintain your current weight.</strong>');
-		$('#carbDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(carbs/4) + ' g of carbohydrates a day, which is equivalent to ' + carbs + 'cals to maintain your current weight.</strong>');
-		$('#fatDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(fat/9) + ' g of fat a day, which is equivalent to ' + fat + 'cals to maintain your current weight.</strong>');
+		$('#carbDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(carbs/4) + 'g of carbohydrates a day, which is equivalent to ' + carbs + 'cals to maintain your current weight.</strong>');
+		$('#fatDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(fat/9) + 'g of fat a day, which is equivalent to ' + fat + 'cals to maintain your current weight.</strong>');
 	}
 
 	function flexiMacros(tdee){
