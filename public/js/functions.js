@@ -1,5 +1,6 @@
 $(function() {
 
+	//local variables initialized
 	var weight = 0.0,
 		height = 0,
 		age = 0,
@@ -17,24 +18,20 @@ $(function() {
 		gender = '',
 		activityName = '';
 
-	// Modal Boxes
-
+	// Modal Box initiation
 	$("#btn9,#btn0").animatedModal();
-
 	$('#btn6').on('click', function (){
 		calcBMI();
 	});
 
+	//Second progress bar at the top initiation
 	$(document).on('ready', function() {
 		var winHeight = $(window).height(),
 			docHeight = $(document).height(),
 			progressBar = $('progress'),
 			max, value;
-
-		/* Set the max scrollable area */
 		max = docHeight - winHeight;
 		progressBar.attr('max', max);
-
 		$(document).on('scroll', function(){
 			value = $(window).scrollTop();
 			progressBar.attr('value', value);
@@ -45,13 +42,14 @@ $(function() {
 	//####################################################################
 	// GENDER START
 	//####################################################################
+	//activate progress bar on male click
 	$('#gmale').on("click", function(){
 		male = true;
 		$('#superBoy,#finishLine').css("display", "block");
 		$('#superGirl').css("display", "none");
 		gender = 'male';
 	});
-
+	//activate progress bar on male click
 	$('#gfemale').on("click", function(){
 		male = false;
 		$('#superGirl,#finishLine').css("display", "block");
@@ -63,19 +61,19 @@ $(function() {
 	//####################################################################
 
 
-
 	//####################################################################
 	// Personal Start
 	//####################################################################
 	$('#personalDetails input').prop('disabled',true);
 	$('#personalDetails input').css('background','rgba(255,255,255,0.3)');
-
+	//check unit selection
 	$( "#units" ).change(function() {
 		$('#personalDetails input').prop('disabled',false);
 		$('#personalDetails input').css('background','rgba(255,255,255,1)');
 		adjustUnits();
 	});
 
+	//weight input capturing
 	$('#weightInput').keyup(function(){
 		var temp = parseFloat($('#weightInput').val());
 		if( isNaN(temp)){
@@ -85,7 +83,7 @@ $(function() {
 			$('#weightInput').css('background','#88A825');
 		}
 	});
-
+	//height input capturing
 	$('#heightInput').keyup(function(){
 		var temp = parseFloat($('#heightInput').val());
 		if( isNaN(temp)){
@@ -95,7 +93,7 @@ $(function() {
 			$('#heightInput').css('background','#88A825');
 		}
 	});
-
+	//age input capturing
 	$('#ageInput').keyup(function(){
 		var temp = parseFloat($('#ageInput').val());
 		if( isNaN(temp)){
@@ -110,16 +108,17 @@ $(function() {
 	// Personal END
 	//####################################################################
 
+	//calculate TDEE when activity button is clicked
 	$('#btn1,#btn2,#btn3,#btn4,#btn5').on('click',function(){
 		var btn = parseInt($(this).text());
 		calcTDEE(btn);
 	});
-
+	//Calculate deficit or surplus when a button is clicked
 	$('#btn7,#btn8,#btn9,#btn0').on('click',function(){
 		var btn = parseInt($(this).attr('id').replace('btn',''));
 		calcDefOrSurp(btn);
 	});
-
+	//unit check
 	function adjustUnits(){
 		units = $('#units').val();
 		if(units == 'metric'){
@@ -132,14 +131,14 @@ $(function() {
 			$('#heightInput').attr('placeholder','Your height in inches');
 		}
 	}
-
+	//Using mLab API to save data
 	function saveData(gen,wei,hei,age,bm,act){
 		$.ajax( { url: "https://api.mlab.com/api/1/databases/mongo/collections/details?apiKey=CFtPUbhD7L8QuM9nNL6IjSPh2t3A3v87",
 			data: JSON.stringify( [ { "gender" : gen ,  "weight" : wei,  "height" : hei ,  "age" : age ,  "bmi" : bm ,  "activity" : act , "date": {"$date": new Date().toISOString()}} ] ),
 			type: "POST",
 			contentType: "application/json" } );
 	}
-
+	//Calculation of body mass index
 	function calcBMI(){
 		if(metric){
 			if(weight != 0  && height != 0 && age != 0){
@@ -174,13 +173,13 @@ $(function() {
 				$('#screen').text('Enter your details by clicking on gender button');
 			}
 		}
-
 	}
 
 	function bmiForSave(){
 			BMI = (weight / ((height / 100) * (height / 100))).toFixed(1);
 	}
 
+	//Calculation of basic metabolic rate
 	function calcBMR(w, h, a){
 		//Metric conversion
 		if(metric == true){
@@ -207,9 +206,9 @@ $(function() {
 		}
 
 	}
-
+	//Calculation for total daily energy expenditure
 	function calcTDEE(activityLvl){
-		//alert(activityLvl);
+		//Check user's activity level
 		var actLvl = 0;
 		switch(activityLvl) {
 			case 1:
@@ -236,6 +235,7 @@ $(function() {
 				$('#screen').text('You forgot to add numbers');
 		}
 
+		//check if activity level is right and show data in the calculator
 		if(actLvl != 0 && actLvl != NaN && BMR != 0 && BMR != NaN){
 			TDEE = BMR * actLvl;
 			bmiForSave();
@@ -250,7 +250,7 @@ $(function() {
 			$('#screen').text('Please enter personal details by selecting gender');
 		}
 	}
-
+	//Adjusting pages according to personal details
 	function changeMacrosPercent(){
 		var macroTemp = BMR * 1.2;
 		protein = Math.round(macroTemp * 0.25);
@@ -260,7 +260,7 @@ $(function() {
 		$('#carbDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(carbs/4) + 'g of carbohydrates a day, which is equivalent to ' + carbs + 'cals to maintain your current weight.</strong>');
 		$('#fatDistribution').html('<strong>Assuming low activity levels (e.g. you work at a desk job), you should consume: ' + Math.round(fat/9) + 'g of fat a day, which is equivalent to ' + fat + 'cals to maintain your current weight.</strong>');
 	}
-
+	//show flexible dieting information
 	function flexiMacros(tdee){
 		protein = Math.round(tdee * 0.25);
 		carbs = Math.round(tdee * 0.45);
@@ -270,6 +270,7 @@ $(function() {
 		$('#flexiFat').text('and ' + Math.round(fat/9) + 'g of fats which is equivalent to ' + fat + 'cals');
 	}
 
+	//Calculation of caloric deficit and surplus
 	function calcDefOrSurp(temp){
 		var deficit = TDEE;
 		var surplus = TDEE;
@@ -292,7 +293,6 @@ $(function() {
 					'' + Math.round((surplus*0.3)/9) + 'g of fats daily.';
 				$('#screen').text(tdeeTextSurplus);
 				flexiMacros(Math.round(surplus));
-				// $('#screen').text('Your daily calories with 10% surplus ' + surplus.toFixed(2));
 				break;
 			case 9:
 				male = true;
@@ -309,7 +309,7 @@ $(function() {
 		}
 	}
 
-
+	//Modal function
 	function modalFunc(){
 		$('#TDEEPersonal input').val('');
 		$('#modalClosing').on('click',function(){
@@ -325,60 +325,59 @@ $(function() {
 
 			if(weight != 0 && weight != false && height != 0 && height != false && age != 0 && age != false){
 				calcBMR(weight, height, age);
-				//$('#screen').text('Please select activity level')
 			}else{
 				$('#screen').text('You entered wrong values');
 			}
 		});
 	}
 
+	//initialize tooltips
 	$('[title!=""]').qtip({
 		position: {
-			target: 'mouse', // Track the mouse as the positioning target
-			adjust: { x: 10, y: 15 } // Offset it slightly from under the mouse
+			target: 'mouse',
+			adjust: { x: 10, y: 15 }
 		},
 		style: { classes: 'qtip-bootstrap' }
 	});
 
+	//show tooltips on specific graphics
 	$('#stat5, #stat6').qtip();
 
+	//show tooltips on side effects
 	$('#side1,#side2,#side3,#side4,#side5,#side6,#side7,#side8,#side9').qtip({
 		content: {
 			text: function(event, api) {
-				// Retrieve content from ALT attribute of the $('.selector') element
 				return $(this).attr('sideText');
 			},
 			title: function(event, api) {
-				// Retrieve content from ALT attribute of the $('.selector') element
 				return $(this).attr('sideTitle');
 			}
 		},
 		position: {
-			target: 'mouse', // Track the mouse as the positioning target
-			adjust: { x: 10, y: 15 } // Offset it slightly from under the mouse
+			target: 'mouse',
+			adjust: { x: 10, y: 15 }
 		},
 		style : {classes : 'qtip-bootstrap'}
 	});
 
+	//show tooltips on healthy and fast food
 	$('#healthyGra,#fatGra').qtip({
 		content: {
 			text: function(event, api) {
-				// Retrieve content from ALT attribute of the $('.selector') element
 				return $(this).attr('foodText');
 			},
 			title: function(event, api) {
-				// Retrieve content from ALT attribute of the $('.selector') element
 				return $(this).attr('foodTitle');
 			}
 		},
 		position: {
-			target: 'mouse', // Track the mouse as the positioning target
-			adjust: { x: 10, y: 15 } // Offset it slightly from under the mouse
+			target: 'mouse',
+			adjust: { x: 10, y: 15 }
 		},
 		style : {classes : 'qtip-bootstrap'}
 	});
 
-
+	//UK map hover effects
 	$("#pointScotland").on('mouseover',function(){
 		$("#imgScotland").css("display","block");
 	}).on('mouseout',function(){
