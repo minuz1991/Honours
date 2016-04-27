@@ -7,23 +7,23 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-//require('./public/js/functions').doShit();
 
 var app = express();
 
 var mongoose = require('mongoose');
 
+//link to the database
 var mongoCon = 'mongodb://minuz:mongoAdmin@ds054128.mlab.com:54128/mongo';
 
+//establish connection
 mongoose.connect(mongoCon);
 
 var db = mongoose.connection;
-var con = 'connected';
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {});
 
 var Schema = mongoose.Schema;
-
+//database structure
 var personalData = new Schema({
   gender: String,
   weight: String,
@@ -34,6 +34,7 @@ var personalData = new Schema({
   date: Date
 });
 
+//Initialization of collection
 var details = mongoose.model('details', personalData);
 
 // view engine setup
@@ -59,7 +60,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
